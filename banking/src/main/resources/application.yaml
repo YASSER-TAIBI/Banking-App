@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: create   # pour ne pas recréer la base à chaque démarrage
+    show-sql: true        # pour voir les requêtes SQL dans la console
+    properties:
+      hibernate:
+        format_sql: true  # pour que les requêtes soient jolies
+    open-in-view: false   # désactive l'avertissement open-in-view
