@@ -1,23 +1,18 @@
 package com.yazzer.banking.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
-public class Address {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Address extends AbstractEntity {
 
     private String street;
 
@@ -29,5 +24,8 @@ public class Address {
 
     private String country;
 
+    @OneToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 
 }

@@ -7,9 +7,9 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create   # pour ne pas recr�er la base � chaque d�marrage
-    show-sql: true        # pour voir les requ�tes SQL dans la console
+      ddl-auto: create   # pour ne pas recr�er la base a chaque demarrage
+    show-sql: true        # pour voir les requetes SQL dans la console
     properties:
       hibernate:
-        format_sql: true  # pour que les requ�tes soient jolies
-    open-in-view: false   # d�sactive l'avertissement open-in-view
+        format_sql: true  # pour que les requetes soient jolies
+    open-in-view: false   # desactive l'avertissement open-in-view

@@ -2,24 +2,19 @@ package com.yazzer.banking.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
-public class Transaction {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Transaction extends AbstractEntity {
 
     private BigDecimal amount;
 
@@ -28,7 +23,7 @@ public class Transaction {
 
     private String destinationIban;
 
-    private LocalDateTime creationDate;
-
-    private LocalDateTime lastUpdated;
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User user;
 }

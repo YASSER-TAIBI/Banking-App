@@ -1,23 +1,20 @@
 package com.yazzer.banking.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
-public class User {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+@Table(name = "_user")
+public class User extends AbstractEntity{
 
     private String firstName;
 
@@ -27,7 +24,20 @@ public class User {
 
     private String password;
 
-//    private Address address;
-
     private boolean active;
+
+    @OneToOne
+    private Address address;
+
+    @OneToMany(mappedBy = "user")
+    private List<Transaction> transactions;
+
+    @OneToMany(mappedBy = "user")
+    private List<Contact> contacts;
+
+    @OneToOne
+    private Account account;
+
+    @OneToOne
+    private Role role;
 }
