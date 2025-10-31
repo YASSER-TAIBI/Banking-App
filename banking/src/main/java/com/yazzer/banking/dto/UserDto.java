@@ -1,6 +1,7 @@
 package com.yazzer.banking.dto;
 
 import com.yazzer.banking.models.User;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Getter
@@ -11,12 +12,26 @@ public class UserDto {
 
     private Integer id;
 
+    @NotNull
+    @NotEmpty
+    @NotBlank
     private String firstName;
 
+    @NotNull
+    @NotEmpty
+    @NotBlank
     private String lastName;
 
+    @NotNull
+    @NotEmpty
+    @NotBlank
+    @Email
     private String email;
 
+    @NotNull
+    @NotEmpty
+    @NotBlank
+    @Size(min = 8, max = 16)
     private String password;
 
     public static UserDto fromEntity(User user) {

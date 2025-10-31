@@ -1,9 +1,11 @@
 package com.yazzer.banking.dto;
 
-import com.yazzer.banking.models.Role;
 import com.yazzer.banking.models.Transaction;
 import com.yazzer.banking.models.TransactionType;
 import com.yazzer.banking.models.User;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,6 +21,9 @@ public class TransactionDto {
 
     private Integer id;
 
+    @Positive
+    @Max(value = 1000000)
+    @Min(value = 1)
     private BigDecimal amount;
 
     private TransactionType type;
