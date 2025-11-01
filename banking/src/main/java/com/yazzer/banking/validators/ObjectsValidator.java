@@ -1,5 +1,6 @@
-package com.yazzer.banking.validator;
+package com.yazzer.banking.validators;
 
+import com.yazzer.banking.exceptions.ObjectValidationException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -21,7 +22,7 @@ public class ObjectsValidator <T> {
             Set<String> errorMessages = violations.stream()
                     .map(ConstraintViolation::getMessage)
                     .collect(Collectors.toSet());
-            // TODO raise en exception
+            throw new ObjectValidationException(errorMessages, objectToValidate.getClass().getName());
         }
     }
 }
