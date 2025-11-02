@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     public UserDto findById(Integer id) {
         return repository.findById(id)
                 .map(UserDto::fromEntity)
-                .orElseThrow(() -> new EntityNotFoundException("No user was found wit the provided ID :"  + id));
+                .orElseThrow(() -> new EntityNotFoundException("No user was found with the provided ID :"  + id));
     }
 
     @Override
