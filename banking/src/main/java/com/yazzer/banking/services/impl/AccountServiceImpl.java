@@ -1,8 +1,6 @@
 package com.yazzer.banking.services.impl;
 
 import com.yazzer.banking.dto.AccountDto;
-import com.yazzer.banking.dto.UserDto;
-import com.yazzer.banking.exceptions.OperationNonPermittedException;
 import com.yazzer.banking.models.Account;
 import com.yazzer.banking.repositories.AccountRepository;
 import com.yazzer.banking.services.AccountService;
