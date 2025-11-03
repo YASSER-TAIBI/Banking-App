@@ -1,6 +1,5 @@
 package com.yazzer.banking.services.impl;
 
-import com.yazzer.banking.dto.AccountDto;
 import com.yazzer.banking.dto.TransactionDto;
 import com.yazzer.banking.models.Transaction;
 import com.yazzer.banking.models.TransactionType;
@@ -58,5 +57,13 @@ public class TransactionServiceImpl implements TransactionService {
 
     private int getTransactionMultiplier (TransactionType type) {
         return TransactionType.TRANSFER == type ? -1 : 1 ;
+    }
+
+    @Override
+    public List<TransactionDto> findAllByUserId(Integer userId) {
+        return repository.findAllByUserId(userId)
+                .stream()
+                .map(TransactionDto::fromEntity)
+                .collect(Collectors.toList());
     }
 }

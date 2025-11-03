@@ -1,6 +1,7 @@
 package com.yazzer.banking.services.impl;
 
 import com.yazzer.banking.dto.AccountDto;
+import com.yazzer.banking.exceptions.OperationNonPermittedException;
 import com.yazzer.banking.models.Account;
 import com.yazzer.banking.repositories.AccountRepository;
 import com.yazzer.banking.services.AccountService;
@@ -34,6 +35,15 @@ public class AccountServiceImpl implements AccountService {
         }*/
         validator.validate(dto);
         Account account = AccountDto.toEntity(dto);
+        boolean userHasAlreadyAnAccount = repository.findByUserId(account.getUser().getId()).isPresent();
+        if (userHasAlreadyAnAccount) {
+            throw new OperationNonPermittedException(
+                    "the selected user has already an active account",
+                    "Create account",
+                    "Account service",
+                    "Account creation"
+            );
+        }
         // generate Random IBAN when creating new account else de not update the IBAN
         if (dto.getId() == null) {
             account.setIban(generateRandomIban());
