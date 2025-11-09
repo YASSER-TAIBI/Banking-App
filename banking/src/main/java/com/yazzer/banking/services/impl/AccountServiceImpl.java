@@ -35,8 +35,11 @@ public class AccountServiceImpl implements AccountService {
         }*/
         validator.validate(dto);
         Account account = AccountDto.toEntity(dto);
+
+        // Vérifie si un compte existe déjà pour ce user
         boolean userHasAlreadyAnAccount = repository.findByUserId(account.getUser().getId()).isPresent();
-        if (userHasAlreadyAnAccount) {
+
+        if (userHasAlreadyAnAccount && account.getUser().isActive()) {
             throw new OperationNonPermittedException(
                     "the selected user has already an active account",
                     "Create account",
@@ -44,7 +47,8 @@ public class AccountServiceImpl implements AccountService {
                     "Account creation"
             );
         }
-        // generate Random IBAN when creating new account else de not update the IBAN
+
+        // Génère un Random IBAN pour un nouveau compte
         if (dto.getId() == null) {
             account.setIban(generateRandomIban());
         }
