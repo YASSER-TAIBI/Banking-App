@@ -12,26 +12,26 @@ public class UserDto {
 
     private Integer id;
 
-    @NotNull
-    @NotEmpty
-    @NotBlank
+    @NotNull(message = "le prenom ne doit pas etre vide")
+    @NotEmpty(message = "le prenom ne doit pas etre vide")
+    @NotBlank(message = "le prenom ne doit pas etre vide")
     private String firstName;
 
-    @NotNull
-    @NotEmpty
-    @NotBlank
+    @NotNull(message = "le nom ne doit pas etre vide")
+    @NotEmpty(message = "le nom ne doit pas etre vide")
+    @NotBlank(message = "le nom ne doit pas etre vide")
     private String lastName;
 
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    @Email
+    @NotNull(message = "l'email ne doit pas etre vide")
+    @NotEmpty(message = "l'email ne doit pas etre vide")
+    @NotBlank(message = "l'email ne doit pas etre vide")
+    @Email(message = "l'email n'est pas conforme")
     private String email;
 
-    @NotNull
-    @NotEmpty
-    @NotBlank
-    @Size(min = 8, max = 16)
+    @NotNull(message = "le Mot de passe ne doit pas etre vide")
+    @NotEmpty(message = "le Mot de passe ne doit pas etre vide")
+    @NotBlank(message = "le Mot de passe ne doit pas etre vide")
+    @Size(min = 8, max = 16, message = "le Mot de passe doit être comprise entre 8 et 16")
     private String password;
 
     public static UserDto fromEntity(User user) {
