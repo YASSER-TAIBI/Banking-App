@@ -7,7 +7,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create   # pour ne pas recr�er la base a chaque demarrage
+      ddl-auto: update   # pour ne pas recr�er la base a chaque demarrage
     show-sql: true        # pour voir les requetes SQL dans la console
     properties:
       hibernate:

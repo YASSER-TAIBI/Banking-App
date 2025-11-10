@@ -1,15 +1,15 @@
 package com.yazzer.banking.controllers;
 
+import com.yazzer.banking.dto.TransactionSumDetails;
 import com.yazzer.banking.services.StatisticsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -19,11 +19,11 @@ public class StatisticsController {
 
     private final StatisticsService statisticsService;
 
-    @GetMapping("/sum-bu-date/{user-id}")
-    public ResponseEntity<Map<LocalDate, BigDecimal>> findSumTransactionByDate(
-            @PathVariable("start-date") LocalDate startDate,
-            @PathVariable("end-date") LocalDate endDate,
-            @PathVariable("user-id") Integer userId
+    @GetMapping("/sum-by-date/{user-id}")
+    public ResponseEntity<List<TransactionSumDetails>> findSumTransactionByDate(
+            @PathVariable("user-id") Integer userId,
+            @RequestParam("start-date") @DateTimeFormat (pattern = "yyyy-MM-dd") LocalDate startDate,
+            @RequestParam("end-date") @DateTimeFormat (pattern = "yyyy-MM-dd") LocalDate endDate
     ){
         return ResponseEntity.ok(statisticsService.findSumTransactionByDate(startDate, endDate, userId));
     }

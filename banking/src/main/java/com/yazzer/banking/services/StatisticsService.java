@@ -1,13 +1,16 @@
 package com.yazzer.banking.services;
 
+import com.yazzer.banking.dto.TransactionSumDetails;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 
 public interface StatisticsService {
 
     // entre 2 dates je récupére la somme des transaction qui seront groupées par date
-    Map<LocalDate, BigDecimal> findSumTransactionByDate(LocalDate startDate, LocalDate endDate, Integer userId);
+    List<TransactionSumDetails> findSumTransactionByDate(LocalDate startDate, LocalDate endDate, Integer userId);
 
     // le solde de compte de l'utilisateur
     BigDecimal getAccountBalance(Integer userId);
