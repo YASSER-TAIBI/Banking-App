@@ -15,7 +15,7 @@ import java.util.function.Function;
 @Service
 public class JwtUtils {
 
-    private String jwtSigningKey = "secret";
+    private String jwtSigningKey = "mySuperSecretKeyForJwtThatIsAtLeast32CharsLong!";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -47,13 +47,18 @@ public class JwtUtils {
         return createToken(claims, userDetails);
     }
 
+    public String generateToken(UserDetails userDetails, Map<String, Object> claims ) {
+        return createToken(claims, userDetails);
+    }
+
     private String createToken(Map<String, Object> claims, UserDetails userDetails) {
         return Jwts.builder().setClaims(claims)
                 .setSubject(userDetails.getUsername())
                 .claim("authorities", userDetails.getAuthorities())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(200)))
-                .signWith(SignatureAlgorithm.HS256, jwtSigningKey).compact();
+                .signWith(SignatureAlgorithm.HS256, jwtSigningKey)
+                .compact();
     }
 
     public Boolean isTokenValid(String token, UserDetails userDetails) {
