@@ -1,6 +1,9 @@
 package com.yazzer.banking.services.impl;
 
+import com.yazzer.banking.config.JwtUtils;
 import com.yazzer.banking.dto.AccountDto;
+import com.yazzer.banking.dto.AuthenticationRequest;
+import com.yazzer.banking.dto.AuthenticationResponse;
 import com.yazzer.banking.dto.UserDto;
 import com.yazzer.banking.exceptions.OperationNonPermittedException;
 import com.yazzer.banking.models.User;
@@ -12,6 +15,11 @@ import com.yazzer.banking.validators.ObjectsValidator;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,11 +33,15 @@ public class UserServiceImpl implements UserService {
     private final AccountRepository accountRepository;
     private final ObjectsValidator<UserDto> validator;
     private final AccountService accountService;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtils jwtUtils;
+    private final AuthenticationManager authManager;
 
     @Override
     public Integer save(UserDto dto) {
         validator.validate(dto);
         User user = UserDto.toEntity(dto);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return repository.save(user).getId();
     }
 
@@ -97,4 +109,28 @@ public class UserServiceImpl implements UserService {
         repository.save(user);
         return user.getId();
     }
+
+    @Override
+    public AuthenticationResponse register(UserDto dto) {
+        validator.validate(dto);
+        User user = UserDto.toEntity(dto);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        var savedUser = repository.save(user);
+        String token = jwtUtils.generateToken(savedUser);
+        return AuthenticationResponse.builder()
+                .token(token)
+                .build();
+    }
+
+    @Override
+    public AuthenticationResponse login(AuthenticationRequest request) {
+        authManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        final UserDetails user = repository.findByEmail(request.getEmail()).get();
+        final String token = jwtUtils.generateToken(user);
+        return AuthenticationResponse.builder()
+                .token(token)
+                .build();
+    }
+
+
 }
