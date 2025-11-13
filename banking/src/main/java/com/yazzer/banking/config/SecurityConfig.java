@@ -38,11 +38,21 @@ public class SecurityConfig {
 
                 // Autorise certaines requêtes publiques
                 .authorizeHttpRequests(auth -> auth
+                        // Autorise Swagger et API docs
+                        .requestMatchers(
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/swagger-resources/**"
+                        ).permitAll()
+
+                        // Autorise authentification et enregistrement
                         .requestMatchers(
                                 "/auth/**"
                         ).permitAll()
-                        .anyRequest()
-                        .authenticated()
+
+                        // Le reste nécessite un token valide
+                        .anyRequest().authenticated()
                 )
 
                 // Gestion des sessions : pas de session côté serveur (JWT stateless)
