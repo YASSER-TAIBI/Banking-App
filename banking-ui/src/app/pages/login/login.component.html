@@ -1,0 +1,33 @@
+<main class="login-container">
+  <mat-card class="login-card">
+    <div class="header">
+      <i class="fa-solid fa-building-columns"></i>
+      <h1>PrimeBank</h1>
+      <p class="subtitle">Connectez-vous à votre compte</p>
+    </div>
+
+    <form class="form">
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="ex: name@email.com" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" placeholder="••••••••" />
+        <button mat-icon-button matSuffix type="button">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" class="login-btn" type="button">
+        Se connecter
+      </button>
+
+      <div class="extra-links">
+        <a href="/register">Créer un compte</a>
+        <a class="muted" href="#">Mot de passe oublié ?</a>
+      </div>
+    </form>
+  </mat-card>
+</main>
