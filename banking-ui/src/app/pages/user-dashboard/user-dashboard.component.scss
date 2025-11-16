@@ -1,0 +1,108 @@
+.dashboard-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  //padding: 0 20px;
+}
+
+/* ======= CARD SOLDE ======= */
+.card-solde {
+  padding: 20px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #c2185b, #880e4f); // rose/rouge Material
+  color: #fff8f8;
+
+  .last-connection{
+    h3 {
+      font-size: 15px;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .connection-value{
+      h3 {
+        font-size: 13px;
+        font-weight: 200;
+      }
+    }
+
+  }
+
+  .date-value{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+
+    h3 {
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0;
+    }
+  }
+  .solde-value {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+
+    .amount {
+      font-size: 34px;
+      font-weight: bold;
+    }
+
+    mat-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
+  }
+}
+
+/* ======= BOTTOM CARDS ======= */
+.bottom-cards {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+}
+
+.info-card {
+  flex: 1;
+  padding: 20px;
+  border-radius: 16px;
+  background-color: #e8e8e8;
+  border-color: #e8e8e8;
+
+  .info-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .info-img {
+      width: 80px;
+      height: auto;
+    }
+
+    h3 {
+      margin: 0 0 5px 0;
+      font-weight: 600;
+      color: #c2185b;
+    }
+
+    p {
+      margin: 3px 0;
+      color: #444;
+      font-size: 14px;
+    }
+
+    .highlight {
+      color: #880e4f;
+      font-weight: bold;
+    }
+  }
+}
