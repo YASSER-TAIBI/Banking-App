@@ -180,7 +180,7 @@
 
 /* Container obligatoire Angular Material */
 .mobile-sidenav-container {
-  height: 100vh;
+  height: auto;
   display: block;
   position: relative;
 }
@@ -268,6 +268,15 @@
     display: block;
     margin-right: 12px;
     color: var(--mat-sys-primary);
+  }
+
+  .mobile-sidenav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    /* largeur déjà à 260px, tu peux garder ou ajuster */
+    z-index: 2000;    /* au-dessus du reste de la page */
   }
 }
 

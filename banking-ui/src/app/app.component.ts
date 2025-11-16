@@ -6,7 +6,7 @@ import {UserDashboardComponent} from './pages/user-dashboard/user-dashboard.comp
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatSlideToggleModule, UserDashboardComponent],
+  imports: [RouterOutlet, MatSlideToggleModule, UserDashboardComponent, MenuComponent],
   templateUrl: './app.component.html',
   standalone: true,
   styleUrl: './app.component.scss'
