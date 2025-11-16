@@ -1,0 +1,59 @@
+<main class="register-container">
+  <mat-card class="register-card">
+    <div class="header">
+      <i class="fa-solid fa-user-plus"></i>
+      <h1>Créer un compte</h1>
+      <p class="subtitle">Rejoignez PrimeBank dès aujourd'hui</p>
+    </div>
+
+    <form class="form">
+
+      <!-- PRENOM -->
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Prénom</mat-label>
+        <input matInput type="text" placeholder="ex: Karim" />
+      </mat-form-field>
+
+      <!-- NOM -->
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Nom</mat-label>
+        <input matInput type="text" placeholder="ex: Taibi" />
+      </mat-form-field>
+
+      <!-- EMAIL -->
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="ex: name@email.com" />
+      </mat-form-field>
+
+      <!-- PASSWORD -->
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" placeholder="••••••••" />
+        <button mat-icon-button matSuffix type="button">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- CONFIRM PASSWORD -->
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Confirmer mot de passe</mat-label>
+        <input matInput type="password" placeholder="••••••••" />
+        <button mat-icon-button matSuffix type="button">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- BOUTON -->
+      <button mat-flat-button color="primary" class="register-btn" type="button">
+        S'inscrire
+      </button>
+
+      <!-- LIEN LOGIN -->
+      <div class="extra-links">
+        <a href="/login">Déjà un compte ? Se connecter</a>
+      </div>
+
+    </form>
+  </mat-card>
+</main>

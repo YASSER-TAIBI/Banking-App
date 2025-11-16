@@ -2,26 +2,22 @@
   display: block;
 }
 
-/* ==== CONTAINER GENERAL ==== */
-.login-container {
+/* ==== CONTAINER ==== */
+.register-container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 24px;
-
-  /* Dégradé neutre pour laisser le thème Material dominer */
   background: linear-gradient(160deg, #ffdad4 0%, #fff8f8 100%);
 }
 
 /* ==== CARD ==== */
-.login-card {
+.register-card {
   width: 100%;
-  max-width: 420px;
-  padding: 32px 28px;
+  max-width: 550px;
+  padding: 32px 50px;
   border-radius: 16px;
-
-  /* Material lui-même gère les couleurs (rose/red) */
   box-shadow: 0 6px 26px rgba(0, 0, 0, 0.09);
 }
 
@@ -30,11 +26,10 @@
   text-align: center;
   margin-bottom: 24px;
 
-  .fa-building-columns {
-      font-size: 48px;
-      margin-bottom: 6px;
-      /* L’icône prend automatiquement la couleur du thème (rose/red) */
-      color: var(--mat-sys-primary);
+  .fa-user-plus {
+    font-size: 48px;
+    margin-bottom: 6px;
+    color: var(--mat-sys-primary);
   }
 
   h1 {
@@ -61,47 +56,36 @@
     width: 100%;
   }
 
-  /* Bouton Material: il prendra automatiquement le rose du thème */
-  .login-btn {
+  .register-btn {
     width: 100%;
     height: 44px;
     font-size: 15px;
-    font-weight: 500;
+    margin-top: 4px;
   }
 
   .extra-links {
     margin-top: 12px;
-    display: flex;
-    justify-content: space-between;
+    text-align: center;
 
     a {
       font-size: 13px;
       text-decoration: none;
       cursor: pointer;
-
-      /* Ton thème Material Rose/Red colore automatiquement le texte en rouge Rose */
       color: var(--mat-sys-primary);
-    }
-
-    .muted {
-      color: rgba(0, 0, 0, 0.6);
     }
   }
 }
 
 /* ==== RESPONSIVE ==== */
-
-/* Tablette */
 @media (max-width: 768px) {
-  .login-card {
+  .register-card {
     max-width: 380px;
     padding: 28px 20px;
   }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
-  .login-card {
+  .register-card {
     max-width: 100%;
     padding: 22px 16px;
   }
@@ -110,7 +94,7 @@
     font-size: 20px;
   }
 
-  .fa-building-columns {
+  .fa-user-plus {
     font-size: 40px !important;
   }
 }
