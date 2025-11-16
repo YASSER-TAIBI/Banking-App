@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {LoginComponent} from './pages/login/login.component';
-import {RegisterComponent} from './pages/register/register.component';
+import {MenuComponent} from './components/menu/menu.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatSlideToggleModule, RegisterComponent],
+  imports: [RouterOutlet, MatSlideToggleModule, MenuComponent],
   templateUrl: './app.component.html',
   standalone: true,
   styleUrl: './app.component.scss'
