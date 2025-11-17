@@ -12,8 +12,8 @@
 .card-solde {
   padding: 20px;
   border-radius: 15px;
-  background: linear-gradient(135deg, #c2185b, #880e4f); // rose/rouge Material
-  color: #fff8f8;
+  background: linear-gradient(135deg, #c2185b, #880e4f);
+  color: #e8e8e8;
 
   .last-connection{
     h3 {
@@ -74,23 +74,20 @@
 .info-card {
   flex: 1;
   padding: 20px;
-  border-radius: 16px;
+  border-radius: 15px;
   background-color: #e8e8e8;
   border-color: #e8e8e8;
 
   .info-content {
     display: flex;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: 15px;
-
-    .info-img {
-      width: 80px;
-      height: auto;
-    }
 
     h3 {
       margin: 0 0 5px 0;
-      font-weight: 600;
+      font-weight: 500;
       color: #c2185b;
     }
 
@@ -98,11 +95,8 @@
       margin: 3px 0;
       color: #444;
       font-size: 14px;
-    }
-
-    .highlight {
-      color: #880e4f;
-      font-weight: bold;
+      font-size: 24px;
+    font-weight: 600;
     }
   }
 }
@@ -110,7 +104,7 @@
 /* TABLETTE */
 @media (max-width: 992px) {
   .dashboard-container {
-    margin: 20px 16px;      /* un peu moins de marge, plus de place */
+    margin: 20px 16px; 
     max-width: 100%;
   }
 
@@ -162,7 +156,7 @@
   }
 
   .bottom-cards {
-    flex-direction: column;  /* une carte par ligne */
+    flex-direction: column;
     gap: 14px;
   }
 
@@ -185,5 +179,57 @@
         font-size: 13px;
       }
     }
+  }
+}
+
+/* ======= DATE RANGE SECTION ======= */
+.date-range-section {
+  padding: 20px;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.datepickers-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.date-field {
+  min-width: 200px;
+}
+
+/* Couleurs rose/rouge sur les form-fields */
+::ng-deep .mat-mdc-form-field-appearance-outline .mdc-notched-outline__leading,
+::ng-deep .mat-mdc-form-field-appearance-outline .mdc-notched-outline__notch,
+::ng-deep .mat-mdc-form-field-appearance-outline .mdc-notched-outline__trailing {
+  border-color: #c2185b;
+}
+
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #e91e63;
+}
+
+::ng-deep .mat-mdc-form-field .mdc-text-field__input {
+  color: #880e4f;
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-form-field-icon-suffix mat-icon {
+  color: #c2185b;
+}
+
+/* Placeholder pour les graphes plus tard */
+.graphs-placeholder {
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  min-height: 220px;
+}
+  
+@media (max-width: 768px) {
+  .datepickers-row {
+    flex-direction: column;
   }
 }

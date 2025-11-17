@@ -29,30 +29,60 @@
   <!-- ====== BOTTOM CARDS ====== -->
   <div class="bottom-cards">
 
-    <!-- MOBILITÉ BOURSE -->
+    <!-- TRANSACTION MAX -->
     <mat-card class="info-card mat-elevation-z2">
       <div class="info-content">
-        <img src="/" class="info-img" alt="">
         <div>
-          <h3>Mobilité Bourse</h3>
-          <p>Pour tout 1er transfert d'un PEA et/ou PEA-PME vers notre banque.</p>
-          <p class="highlight">
-            Jusqu’à <strong>200 € offerts</strong> + frais de transfert <strong>2× remboursés</strong>
-          </p>
+          <h3>Transaction la plus élevée</h3>
+          <p>1 100,00 €</p>
         </div>
       </div>
     </mat-card>
 
-    <!-- PAIEMENT MOBILE -->
+    <!-- DEPOT MAX -->
     <mat-card class="info-card mat-elevation-z2">
       <div class="info-content">
-        <img src="/" class="info-img" alt="">
         <div>
-          <h3>Paiement mobile</h3>
-          <p>Payer avec votre téléphone n’aura jamais été aussi simple.</p>
+          <h3>Dépôt le plus élevé</h3>
+          <p>3 056,40 €</p>
         </div>
       </div>
     </mat-card>
+
+  </div>
+
+  <!-- ====== DATE RANGE / GRAPH AREA ====== -->
+  <div class="date-range-section">
+
+    <div class="datepickers-row">
+      <mat-form-field appearance="outline" class="date-field">
+        <mat-label>Date début</mat-label>
+        <input
+          matInput
+          [matDatepicker]="startPicker"
+          [(ngModel)]="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startPicker">
+          <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="date-field">
+        <mat-label>Date fin</mat-label>
+        <input
+          matInput
+          [matDatepicker]="endPicker"
+          [(ngModel)]="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endPicker">
+          <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="graphs-placeholder">
+      <!-- Ici tu ajouteras plus tard tes 2 graphes (barres + courbe) -->
+    </div>
 
   </div>
 </div>
