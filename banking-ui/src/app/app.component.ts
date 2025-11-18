@@ -4,10 +4,11 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MenuComponent} from './components/menu/menu.component';
 import {UserDashboardComponent} from './pages/user-dashboard/user-dashboard.component';
 import {TransactionsComponent} from './pages/transactions/transactions.component';
+import {ContactsComponent} from './pages/contacts/contacts.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatSlideToggleModule, UserDashboardComponent, MenuComponent, TransactionsComponent],
+  imports: [RouterOutlet, MatSlideToggleModule, UserDashboardComponent, MenuComponent, TransactionsComponent, ContactsComponent],
   templateUrl: './app.component.html',
   standalone: true,
   styleUrl: './app.component.scss'

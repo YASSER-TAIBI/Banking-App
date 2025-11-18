@@ -1,4 +1,4 @@
-.transactions-container {
+.contacts-container {
   max-width: 1100px;
   margin: 40px auto;
   display: flex;
@@ -11,7 +11,7 @@
   }
 }
 
-.transactions-header {
+.contacts-header {
   padding: 20px;
   border-radius: 15px;
   background-color: #fff;
@@ -52,7 +52,7 @@
   }
 }
 
-.new-transaction-btn {
+.new-contact-btn {
   background: linear-gradient(135deg, #c2185b, #e91e63);
   color: #e8e8e8 !important;
   font-weight: 600;
@@ -84,7 +84,7 @@
 }
 
 /* Tableau */
-.transactions-table {
+.contacts-table {
   width: 100%;
   min-width: 600px;
 
@@ -129,11 +129,47 @@
       }
     }
   }
+
+    /* Colonne Actions */
+    .actions-header {
+    text-align: center;
+    min-width: 120px;
+    }
+
+    .actions-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    }
+
+    .action-btn {
+    width: 32px;
+    height: 32px;
+
+        &:hover {
+        width: 39px;
+        height: 36px; 
+        }
+        mat-icon {
+        font-size: 20px;
+        }
+    }
+
+    .edit-btn {
+    color: #1976d2; // bleu pour édition
+    }
+
+    .delete-btn {
+    color: #d32f2f; // rouge pour suppression
+    }
 }
+
+
 
 /* Mobile : texte plus petit */
 @media (max-width: 600px) {
-  .transactions-table {
+  .contacts-table {
     min-width: 520px;
 
     .mat-mdc-header-cell,
@@ -146,7 +182,7 @@
 
 /* Ajustement tablette */
 @media (max-width: 992px) {
-  .transactions-container {
+  .contacts-container {
     margin: 20px 16px;
   }
 }
