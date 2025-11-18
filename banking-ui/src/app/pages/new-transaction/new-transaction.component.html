@@ -1,0 +1,72 @@
+<div class="new-transaction-container">
+  <div class="new-transaction-header">
+    <div class="header-row">
+      <div class="title-block">
+        <h2>Nouvelle Transaction</h2>
+        <p class="subtitle">
+          Créez un nouveau paiement ou dépôt depuis votre compte
+        </p>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="balance-info">
+        <span class="balance-label">Solde de votre compte:</span>
+        <span class="balance-value">21 560€</span>
+      </div>
+
+      <form class="transaction-form">
+        <!-- Contact -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Contact</mat-label>
+          <mat-select>
+            <mat-option value="john">John Doe</mat-option>
+            <mat-option value="jane">Jane Doe</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Transaction Type -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Type de transaction</mat-label>
+          <mat-select>
+            <mat-option value="transfer">Transfer</mat-option>
+            <mat-option value="deposit">Deposit</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Amount -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Montant</mat-label>
+          <input matInput placeholder="1 560€">
+        </mat-form-field>
+
+        <!-- IBAN -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>IBAN</mat-label>
+          <input matInput placeholder="DE12 1234 3456 3456 3455 00">
+        </mat-form-field>
+
+        <!-- Buttons -->
+        <div class="actions-row">
+          <button 
+          mat-raised-button
+          color="primary"
+          type="button" 
+          class="cancel-link">
+          <mat-icon class="btn-icon">cancel</mat-icon>
+            Annuler
+          </button>
+
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="save-btn">
+            <mat-icon class="btn-icon">save</mat-icon>
+            Enregistrer
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
