@@ -26,15 +26,15 @@ export class ContactsComponent {
   displayedColumns: string[] = ['firstName', 'lastName', 'email', 'iban', 'actions'];
 
   contacts: Contact[] = [
-    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'DE12 1234 3456 3456 3455 00' },
-    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'DE12 1234 3456 3456 3455 00' },
-    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'DE12 1234 3456 3456 3455 00' },
-    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'DE12 1234 3456 3456 3455 00' },
-    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'DE12 1234 3456 3456 3455 00' },
-    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'DE12 1234 3456 3456 3455 00' },
-    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'DE12 1234 3456 3456 3455 00' },
-    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'DE12 1234 3456 3456 3455 00' },
-    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'DE12 1234 3456 3456 3455 00' }
+    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'FR12 1234 3456 3456 3455 00' },
+    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'FR12 1234 3456 3456 3455 00' },
+    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'FR12 1234 3456 3456 3455 00' },
+    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'FR12 1234 3456 3456 3455 00' },
+    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'FR12 1234 3456 3456 3455 00' },
+    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'FR12 1234 3456 3456 3455 00' },
+    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'FR12 1234 3456 3456 3455 00' },
+    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'FR12 1234 3456 3456 3455 00' },
+    { firstName: 'John', lastName: 'Doe', email: 'exemple@gmail.com', iban: 'FR12 1234 3456 3456 3455 00' }
   ]
 
   dataSource = new MatTableDataSource<Contact>(this.contacts);

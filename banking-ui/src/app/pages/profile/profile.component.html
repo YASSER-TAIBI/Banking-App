@@ -1,0 +1,79 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <div class="header-row">
+      <div class="title-block">
+        <h2>Mon Profil</h2>
+        <p class="subtitle">
+          Gestion de vos informations personnelles et de votre adresse
+        </p>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <form class="profile-form">
+        <div class="profile-columns">
+          <!-- Informations personnelles -->
+          <div class="profile-section">
+            <h3 class="section-title">Informations personnelles</h3>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Prénom</mat-label>
+              <input matInput placeholder="John">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Nom</mat-label>
+              <input matInput placeholder="Doe">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="john.doe@example.com">
+            </mat-form-field>
+          </div>
+
+          <!-- Adresse -->
+          <div class="profile-section">
+            <h3 class="section-title">Adresse</h3>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Rue</mat-label>
+              <input matInput placeholder="10 rue de la Paix">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Ville</mat-label>
+              <input matInput placeholder="Paris">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Code postal</mat-label>
+              <input matInput placeholder="75000">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="actions-row">
+          <button
+            mat-raised-button
+            color="primary"
+            type="button"
+            class="cancel-btn">
+            <mat-icon class="btn-icon">cancel</mat-icon>
+            Annuler
+          </button>
+
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="save-btn">
+            <mat-icon class="btn-icon">save</mat-icon>
+            Enregistrer
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
