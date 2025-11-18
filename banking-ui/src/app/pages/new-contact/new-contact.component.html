@@ -1,1 +1,66 @@
-<p>new-contact works!</p>
+<div class="new-contact-container">
+  <div class="new-contact-header">
+    <div class="header-row">
+      <div class="title-block">
+        <h2>Nouveau Contact</h2>
+        <p class="subtitle">
+          Ajoutez un nouveau bénéficiaire à votre liste de contacts
+        </p>
+      </div>
+    </div>
+
+    <div class="form-card">
+        <div class="balance-info">
+        <span class="balance-label">Votre liste de contacts contient :</span>
+        <span class="balance-value">9 bénéficiaires</span>
+      </div>
+
+      <form class="contact-form">
+        <!-- Prénom -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Prénom</mat-label>
+          <input matInput placeholder="John">
+        </mat-form-field>
+
+        <!-- Nom -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nom</mat-label>
+          <input matInput placeholder="Doe">
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="john.doe@example.com">
+        </mat-form-field>
+
+        <!-- IBAN -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>IBAN</mat-label>
+          <input matInput placeholder="FR12 1234 3456 3456 3455 00">
+        </mat-form-field>
+
+        <!-- Buttons -->
+        <div class="actions-row">
+          <button
+            mat-raised-button
+            color="primary"
+            type="button"
+            class="cancel-btn">
+            <mat-icon class="btn-icon">cancel</mat-icon>
+            Annuler
+          </button>
+
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            class="save-btn">
+            <mat-icon class="btn-icon">save</mat-icon>
+            Enregistrer
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
