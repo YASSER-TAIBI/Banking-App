@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import {RouterLink} from '@angular/router';
 
 interface Contact {
   firstName: string;
@@ -13,9 +14,10 @@ interface Contact {
 @Component({
   selector: 'app-contacts',
   imports: [
-    MatButtonModule, 
+    MatButtonModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    RouterLink
   ],
   templateUrl: './contacts.component.html',
   standalone: true,
@@ -38,11 +40,6 @@ export class ContactsComponent {
   ]
 
   dataSource = new MatTableDataSource<Contact>(this.contacts);
-
-  onNewContact() {
-    // tu ajouteras plus tard l’ouverture d’un dialog ou la navigation vers une page de création
-    console.log('New contact clicked');
-  }
 
   onEditContact(contact: Contact) {
     console.log('Edit contact', contact);

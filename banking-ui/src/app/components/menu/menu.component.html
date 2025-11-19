@@ -52,22 +52,29 @@
   <!-- LEFT PART : LOGO + NAVIGATION -->
   <div class="menu-left">
     <!-- LOGO -->
-    <div class="logo">
+    <div class="logo" [routerLink]="'/' + role">
       <i class="fa-solid fa-building-columns"></i>
       <span>PrimeBank</span>
     </div>
 
     <!-- NAVIGATION MENU -->
     <nav class="nav-links">
-      <a class="nav-item" href="#">Dashboard</a>
-      <a class="nav-item" href="#">Mes transaction</a>
-
+      <a class="nav-item" [routerLink]="'/' + role">Dashboard</a>
+      @if (!isAdmin){
+      <a class="nav-item" href="/user/transactions">Mes transaction</a>
+      }
+      @if (!isAdmin){
       <div class="nav-item dropdown">
         Services
         <i class="fa-solid fa-caret-down"></i>
       </div>
-
-      <a class="nav-item" href="#">Mes contacts</a>
+      }
+      @if (!isAdmin){
+      <a class="nav-item" href="/user/contacts">Mes contacts</a>
+      }
+      @if (isAdmin){
+        <a class="nav-item" href="/admin/customers">Nos Clients</a>
+      }
     </nav>
   </div>
 
@@ -91,7 +98,7 @@
     </div>
 
     <!-- USER AVATAR -->
-    <div class="user-avatar">
+    <div class="user-avatar" [routerLink]="'/'+ role +'/profile'">
       <span>YT</span>
     </div>
 

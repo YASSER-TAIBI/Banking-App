@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import {RouterLink} from '@angular/router';
 
 interface Transaction {
   date: string;
@@ -13,9 +14,10 @@ interface Transaction {
 @Component({
   selector: 'app-transactions',
   imports: [
-    MatButtonModule, 
+    MatButtonModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    RouterLink
   ],
   templateUrl: './transactions.component.html',
   standalone: true,
@@ -39,8 +41,4 @@ export class TransactionsComponent {
 
   dataSource = new MatTableDataSource<Transaction>(this.transactions);
 
-  onNewTransaction() {
-    // tu ajouteras plus tard l’ouverture d’un dialog ou la navigation vers une page de création
-    console.log('New transaction clicked');
-  }
 }
