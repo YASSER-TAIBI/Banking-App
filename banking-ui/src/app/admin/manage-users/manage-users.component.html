@@ -1,0 +1,78 @@
+<div class="manage-users-container">
+  <div class="manage-users-header">
+    <div class="header-row">
+      <div class="title-block">
+        <h2>Clients de la Banque</h2>
+        <p class="subtitle">
+          Gestion des clients actifs et inactifs dans votre application bancaire
+        </p>
+      </div>
+
+      <div class="toggle-wrapper">
+        <span class="toggle-label">Afficher les clients inactifs uniquement</span>
+        <mat-slide-toggle
+          color="primary"
+          [checked]="showInactiveOnly"
+          (change)="onToggleInactive($event.checked)">
+        </mat-slide-toggle>
+      </div>
+    </div>
+
+    <div class="table-wrapper">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="users-table mat-elevation-z0">
+
+        <!-- Firstname -->
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef>Nom</th>
+          <td mat-cell *matCellDef="let user">{{ user.firstName }}</td>
+        </ng-container>
+
+        <!-- Lastname -->
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef>Prénom</th>
+          <td mat-cell *matCellDef="let user">{{ user.lastName }}</td>
+        </ng-container>
+
+        <!-- IBAN -->
+        <ng-container matColumnDef="iban">
+          <th mat-header-cell *matHeaderCellDef>IBAN</th>
+          <td mat-cell *matCellDef="let user">{{ user.iban }}</td>
+        </ng-container>
+
+        <!-- State -->
+        <ng-container matColumnDef="state">
+          <th mat-header-cell *matHeaderCellDef>Etat</th>
+          <td mat-cell *matCellDef="let user">
+            <span
+              class="state-badge"
+              [class.badge-success]="user.state === 'active'"
+              [class.badge-warning]="user.state === 'inactive'">
+              {{ user.state }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="actions-header">
+            Actions
+          </th>
+          <td mat-cell *matCellDef="let user" class="actions-cell">
+            <mat-checkbox [checked]="user.active"></mat-checkbox>
+          </td>
+        </ng-container>
+
+        <!-- Header / Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns; let i = index"
+          [class.alt-row]="i % 2 === 1">
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

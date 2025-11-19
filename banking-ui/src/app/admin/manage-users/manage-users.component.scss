@@ -1,0 +1,174 @@
+.manage-users-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    margin: 16px 12px;
+    padding: 12px;
+  }
+}
+
+.manage-users-header {
+  padding: 20px;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* Titre + toggle */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 40px 40px 40px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 16px 12px 16px;
+  }
+}
+
+.title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .subtitle {
+    margin: 0;
+    font-size: 13px;
+    color: #777;
+  }
+}
+
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .toggle-label {
+    font-size: 13px;
+    color: #555;
+  }
+}
+
+/* Table wrapper */
+.table-wrapper {
+  border: 1px solid #000;
+  overflow-x: auto;
+}
+
+/* Tableau */
+.users-table {
+  width: 100%;
+  min-width: 700px;
+
+  .mat-mdc-header-row {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #000;
+    height: var(--mat-table-header-container-height, 45px);
+  }
+
+  .mat-mdc-header-cell {
+    text-align: left;
+    padding: 8px 12px;
+    font-weight: 600;
+    font-size: 14px;
+    border-right: 1px solid #bdbdbd;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  .mat-mdc-row {
+    border-bottom: 1px solid #bdbdbd;
+    height: var(--mat-table-row-item-container-height, 45px);
+
+    &.alt-row {
+      background-color: #f7f7f7;
+    }
+
+    &:last-child {
+      border-bottom: 1px solid #000;
+    }
+
+    .mat-mdc-cell {
+      padding: 8px 12px;
+      font-size: 14px;
+      white-space: nowrap;
+      border-right: 1px solid #e0e0e0;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
+/* Badges d'état */
+.state-badge {
+  display: inline-block;
+  min-width: 70px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: lowercase;
+  border: 1px solid transparent;
+}
+
+.badge-success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-color: #2e7d32;
+}
+
+.badge-warning {
+  background-color: #fff8e1;
+  color: #f57c00;
+  border-color: #f57c00;
+}
+
+/* Colonne actions */
+.actions-header {
+  text-align: center;
+  min-width: 100px;
+}
+
+.actions-cell {
+  display: flex;
+  justify-content: center;
+}
+
+/* Mobile : texte plus petit */
+@media (max-width: 600px) {
+  .users-table {
+    min-width: 600px;
+
+    .mat-mdc-header-cell,
+    .mat-mdc-cell {
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+  }
+}
+
+/* Ajustement tablette */
+@media (max-width: 992px) {
+  .manage-users-container {
+    margin: 20px 16px;
+  }
+}
