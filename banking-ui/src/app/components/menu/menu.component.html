@@ -3,44 +3,60 @@
   <!-- ===== SIDE NAV LEFT ===== -->
   <mat-sidenav #drawer mode="over" class="mobile-sidenav">
 
-    <!-- Avatar -->
-    <div class="mobile-avatar">
-      <div class="avatar-circle">YT</div>
-      <h3>Yasser TAIBI</h3>
-    </div>
+  <div class="mobile-avatar" [routerLink]="'/'+ role +'/profile'" (click)="drawer.close()">
+    <div class="avatar-circle">YT</div>
+    <h3>Yasser TAIBI</h3>
+  </div>
 
-<!--    <mat-divider></mat-divider>-->
+  <mat-nav-list>
 
-    <!-- Menu Items EXACTEMENT comme les images -->
-    <mat-nav-list>
+    <!-- Dashboard -->
+    <a mat-list-item
+       [routerLink]="'/' + role"
+       (click)="drawer.close()">
+      <i class="fa-solid fa-gauge-high"></i>
+      <span>Dashboard</span>
+    </a>
 
-      <a mat-list-item>
-<!--        <mat-icon>dashboard</mat-icon>-->
-        <i class="fa-solid fa-gauge-high"></i>
-        <span>Dashboard</span>
-      </a>
+    <!-- Mes transactions (user uniquement) -->
+     @if (!isAdmin){
+    <a mat-list-item
+       [routerLink]="'/user/transactions'"
+       (click)="drawer.close()">
+      <i class="fa-solid fa-arrow-right-arrow-left"></i>
+      <span>Mes transactions</span>
+    </a>
+    }
+    <!-- Services (placeholder) -->
+    @if (!isAdmin){
+    <a mat-list-item
+       [routerLink]="'/user/dashboard'"
+       (click)="drawer.close()">
+      <i class="fa-solid fa-wrench"></i>
+      <span>Services</span>
+    </a>
+    }
 
-      <a mat-list-item>
-<!--        <mat-icon>sync_alt</mat-icon>-->
-        <i class="fa-solid fa-arrow-right-arrow-left"></i>
-        <span>Mes transactions</span>
-      </a>
-
-      <a mat-list-item>
-<!--        <mat-icon>build</mat-icon>-->
-        <i class="fa-solid fa-wrench"></i>
-        <span>Services</span>
-      </a>
-
-      <a mat-list-item>
-<!--        <mat-icon>contacts</mat-icon>-->
-        <i class="fa-solid fa-address-book"></i>
-        <span>Mes contacts</span>
-      </a>
-
-    </mat-nav-list>
-
-  </mat-sidenav>
+    <!-- Mes contacts (user) -->
+    @if (!isAdmin){
+    <a mat-list-item
+       [routerLink]="'/user/contacts'"
+       (click)="drawer.close()">
+      <i class="fa-solid fa-address-book"></i>
+      <span>Mes contacts</span>
+    </a>
+    }
+    <!-- Clients (admin) -->
+    @if (isAdmin){
+    <a mat-list-item
+       [routerLink]="'/admin/customers'"
+       (click)="drawer.close()">
+      <i class="fa-solid fa-address-book"></i>
+      <span>Nos clients</span>
+    </a>
+    }
+  </mat-nav-list>
+</mat-sidenav>
 
 <header class="menu-container">
 

@@ -62,9 +62,11 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  z-index: auto !important;
 
   .btn-icon {
     font-size: 20px;
+    z-index: auto;
   }
 
   &:hover {
@@ -75,6 +77,10 @@
     align-self: stretch;
     justify-content: center;
   }
+}
+
+::ng-deep .mdc-button__label {
+  z-index: auto !important;
 }
 
 /* Wrapper pour rendre le tableau scrollable sur mobile */
