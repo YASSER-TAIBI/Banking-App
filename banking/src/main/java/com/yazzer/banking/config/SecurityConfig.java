@@ -33,6 +33,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception { // règles de sécurité HTTP (qui peut accéder à quoi, quels filtres).
         http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 // Désactive CSRF si tu fais du REST (parce qu’on n’utilise pas de sessions et de formulaires HTML. Si tu fais une app web avec formulaires, ne le désactive pas.)
                 .csrf(csrf -> csrf.disable())
 
@@ -50,7 +51,7 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/auth/**"
                         ).permitAll()
-
+                        
                         // Le reste nécessite un token valide
                         .anyRequest().authenticated()
                 )
@@ -69,22 +70,23 @@ public class SecurityConfig {
     }
 
     //@Bean
-    public CorsFilter corsFilter() {
-        return null;
-    }
+    // public CorsFilter corsFilter() {
+    //     return null;
 
-//    @Bean
-//    public CorsConfigurationSource corsConfigurationSource() { // règles CORS (qui peut appeler ton API depuis un autre domaine).
-//        CorsConfiguration config = new CorsConfiguration();
-//        config.setAllowedOrigins(List.of("http://localhost:4200")); // ton frontend Angular par ex.
-//        config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-//        config.setAllowedHeaders(List.of("*"));
-//        config.setAllowCredentials(true);
-//
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", config);
-//        return source;
-//    }
+    // }
+
+   @Bean
+   public CorsConfigurationSource corsConfigurationSource() { // règles CORS (qui peut appeler ton API depuis un autre domaine).
+       CorsConfiguration config = new CorsConfiguration();
+       config.setAllowedOrigins(List.of("http://localhost:4200")); // ton frontend Angular par ex.
+       config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+       config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+       config.setAllowCredentials(true);
+
+       UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+       source.registerCorsConfiguration("/**", config);
+       return source;
+   }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception { // manager global d’authentification.
