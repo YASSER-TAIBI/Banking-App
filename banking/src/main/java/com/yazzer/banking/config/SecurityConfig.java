@@ -69,12 +69,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    //@Bean
-    // public CorsFilter corsFilter() {
-    //     return null;
-
-    // }
-
    @Bean
    public CorsConfigurationSource corsConfigurationSource() { // règles CORS (qui peut appeler ton API depuis un autre domaine).
        CorsConfiguration config = new CorsConfiguration();

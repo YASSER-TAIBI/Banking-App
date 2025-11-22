@@ -13,3 +13,5 @@ spring:
       hibernate:
         format_sql: true  # pour que les requetes soient jolies
     open-in-view: false   # desactive l'avertissement open-in-view
+springdoc:
+  default-produces-media-type: application/json

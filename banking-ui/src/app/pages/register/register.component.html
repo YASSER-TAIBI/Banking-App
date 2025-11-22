@@ -11,25 +11,25 @@
       <!-- PRENOM -->
       <mat-form-field appearance="outline" class="full">
         <mat-label>Prénom</mat-label>
-        <input matInput type="text" placeholder="ex: Karim" />
+        <input matInput type="text" placeholder="ex: Karim" [(ngModel)]="userDto.firstName" name="firstName" required/>
       </mat-form-field>
 
       <!-- NOM -->
       <mat-form-field appearance="outline" class="full">
         <mat-label>Nom</mat-label>
-        <input matInput type="text" placeholder="ex: Taibi" />
+        <input matInput type="text" placeholder="ex: Taibi" [(ngModel)]="userDto.lastName" name="lastName" required/>
       </mat-form-field>
 
       <!-- EMAIL -->
       <mat-form-field appearance="outline" class="full">
         <mat-label>Email</mat-label>
-        <input matInput type="email" placeholder="ex: name@email.com" />
+        <input matInput type="email" placeholder="ex: name@email.com" [(ngModel)]="userDto.email" name="email" required/>
       </mat-form-field>
 
       <!-- PASSWORD -->
       <mat-form-field appearance="outline" class="full">
         <mat-label>Mot de passe</mat-label>
-        <input matInput type="password" placeholder="••••••••" />
+        <input matInput type="password" placeholder="••••••••" [(ngModel)]="userDto.password" name="password" required/>
         <button mat-icon-button matSuffix type="button">
           <mat-icon>visibility</mat-icon>
         </button>
@@ -45,7 +45,7 @@
       </mat-form-field>
 
       <!-- BOUTON -->
-      <button mat-flat-button color="primary" class="register-btn" type="button">
+      <button mat-flat-button color="primary" class="register-btn" type="button" (click)="register()">
         S'inscrire
       </button>
 
