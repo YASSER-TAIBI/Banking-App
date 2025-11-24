@@ -29,8 +29,10 @@ userDto: UserDto = {
   email: '',
   firstName: '',
   lastName: '',
-  password: ''
+  password: '',
+  confirmPassword: '',
 };
+errorMessage: Array<string> = [];
 
   private rootUrl = 'http://localhost:8080'; //
   private http = inject(HttpClient);
@@ -47,6 +49,7 @@ userDto: UserDto = {
         },
         error: (err) => {
           console.error('Erreur lors de l’enregistrement :', err);
+          this.errorMessage = err.error.validationErrors;
           alert('Erreur : ' + err.message);
         }
       });

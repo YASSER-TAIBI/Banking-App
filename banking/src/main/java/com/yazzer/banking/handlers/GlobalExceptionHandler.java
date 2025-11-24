@@ -63,4 +63,12 @@ public class GlobalExceptionHandler {
                 .build();
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(representation);
     }
+
+    @ExceptionHandler(IllegalArgumentException.class) // les mots de passe ne correspondent pas
+    public ResponseEntity<ExceptionRepresentation> handleIllegalArgument(IllegalArgumentException e) {
+        ExceptionRepresentation representation = ExceptionRepresentation.builder()
+                .errorMessage(e.getMessage())
+                .build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(representation);
+    }
 }

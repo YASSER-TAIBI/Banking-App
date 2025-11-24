@@ -38,7 +38,7 @@
       <!-- CONFIRM PASSWORD -->
       <mat-form-field appearance="outline" class="full">
         <mat-label>Confirmer mot de passe</mat-label>
-        <input matInput type="password" placeholder="••••••••" />
+        <input matInput type="password" placeholder="••••••••" [(ngModel)]="userDto.confirmPassword" name="confirmPassword" required/>
         <button mat-icon-button matSuffix type="button">
           <mat-icon>visibility</mat-icon>
         </button>

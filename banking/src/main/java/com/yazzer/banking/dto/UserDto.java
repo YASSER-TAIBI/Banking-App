@@ -34,6 +34,11 @@ public class UserDto {
     @Size(min = 8, max = 16, message = "le Mot de passe doit être comprise entre 8 et 16")
     private String password;
 
+    @NotNull(message = "la confirmation du mot de passe ne doit pas etre vide")
+    @NotEmpty(message = "la confirmation du mot de passe ne doit pas etre vide")
+    @NotBlank(message = "la confirmation du mot de passe ne doit pas etre vide")
+    private String confirmPassword;
+
     public static UserDto fromEntity(User user) {
         if (user == null) {
             return null;

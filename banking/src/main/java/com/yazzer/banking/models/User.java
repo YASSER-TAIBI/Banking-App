@@ -44,7 +44,8 @@ public class User extends AbstractEntity implements UserDetails {
     @OneToOne
     private Account account;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "role_id") // tu gardes la colonne existante
     private Role role;
 
     @Override

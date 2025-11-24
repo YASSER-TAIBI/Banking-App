@@ -17,7 +17,6 @@ public class RoleDto {
 
     private String name;
 
-    private Integer userId;
 
     public static RoleDto fromEntity(Role role) {
         if (role == null) {
@@ -27,7 +26,6 @@ public class RoleDto {
         return RoleDto.builder()
                 .id(role.getId())
                 .name(role.getName())
-                .userId(role.getUser().getId())
                 .build();
     }
 
@@ -39,11 +37,6 @@ public class RoleDto {
         return Role.builder()
                 .id(roleDto.getId())
                 .name(roleDto.getName())
-                .user(
-                        User.builder()
-                                .id(roleDto.getUserId())
-                                .build()
-                )
                 .build();
     }
 

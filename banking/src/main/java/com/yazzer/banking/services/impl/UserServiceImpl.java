@@ -118,6 +118,11 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public AuthenticationResponse register(UserDto dto) {
         validator.validate(dto);
+
+        if (!dto.getPassword().equals(dto.getConfirmPassword())) {
+            throw new IllegalArgumentException("Les mots de passe ne correspondent pas");
+        }
+
         User user = UserDto.toEntity(dto);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(findOrCreateRole(ROLE_USER));

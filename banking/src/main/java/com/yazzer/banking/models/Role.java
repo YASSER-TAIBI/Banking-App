@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +16,6 @@ public class Role extends AbstractEntity {
 
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "id_user")
-    private User user;
+    @OneToMany(mappedBy = "role")
+    private List<User> users;
 }
