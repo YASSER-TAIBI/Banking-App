@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserDto} from '../../services/models/user-dto';
 import { register as registerApi } from '../../services/fn/authentication-controller/register';
 import {HttpClient} from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -36,21 +37,28 @@ errorMessage: Array<string> = [];
 
   private rootUrl = 'http://localhost:8080'; //
   private http = inject(HttpClient);
-
+  private router = inject(Router);
 
   register() {
+    this.errorMessage = []; // reset
     // Appel à ton endpoint généré
     registerApi(this.http, this.rootUrl, { body: this.userDto })
       .subscribe({
-        next: (res) => {
-          console.log('Utilisateur créé avec succès !');
-          console.log(res.body);     // AuthenticationResponse
-          alert('Compte créé avec succès !');
+        next: async (res) => {
+          await this.router.navigate(['/confirm-register']);
+          console.log(res.body);
         },
         error: (err) => {
-          console.error('Erreur lors de l’enregistrement :', err);
-          this.errorMessage = err.error.validationErrors;
-          alert('Erreur : ' + err.message);
+          // err.error correspond au body JSON de ExceptionRepresentation
+          const backendError = err.error;
+          // message global (par ex. "Object not valid exception has occured")
+          if (backendError?.errorMessage) {
+            this.errorMessage.push(backendError.errorMessage);
+          }
+          // messages de validation (annotations de UserDto)
+          if (backendError?.validationErrors && Array.isArray(backendError.validationErrors)) {
+            this.errorMessage.push(...backendError.validationErrors);
+          }
         }
       });
   }

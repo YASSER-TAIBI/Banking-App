@@ -49,6 +49,17 @@
         S'inscrire
       </button>
 
+      <!-- MESSAGE D'ERREUR -->
+       @if(errorMessage.length) {
+        <div class="error-block">
+          <ul>
+            @for(error of errorMessage; track $index) {
+              <li>{{ error }}</li>
+            }
+          </ul>
+        </div>
+       }
+
       <!-- LIEN LOGIN -->
       <div class="extra-links">
         <a href="/login">Déjà un compte ? Se connecter</a>

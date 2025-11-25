@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ObjectValidationException.class)
     public ResponseEntity<ExceptionRepresentation> handleException(ObjectValidationException exeption) {
         ExceptionRepresentation representation = ExceptionRepresentation.builder()
-                .errorMessage("Object not valid exception has occured")
+                .errorMessage("Une exception «Objet non valide» s'est produite")
                 .errorSource(exeption.getViolationSource())
                 .validationErrors(exeption.getViolations())
                 .build();
@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ExceptionRepresentation> handleException() {
         ExceptionRepresentation representation = ExceptionRepresentation.builder()
-                .errorMessage("A user already exists with the provided email")
+                .errorMessage("Un utilisateur existe déjà avec l'adresse e-mail fournie")
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(representation);
     }
@@ -51,7 +51,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DisabledException.class) // l’authentification est rejetée parce que le compte est désactivé
     public ResponseEntity<ExceptionRepresentation> handleDisabledException() {
         ExceptionRepresentation representation = ExceptionRepresentation.builder()
-                .errorMessage("You cannot access your account because it is not yet activated")
+                .errorMessage("Vous ne pouvez pas accéder à votre compte car il n'est pas encore activé")
                 .build();
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(representation);
     }
@@ -59,7 +59,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BadCredentialsException.class) // l’authentification est rejetée parce que les informations d’identification ne sont pas valides
     public ResponseEntity<ExceptionRepresentation> handleBadCredentialsException() {
         ExceptionRepresentation representation = ExceptionRepresentation.builder()
-                .errorMessage("Your email and / or password is incorrect")
+                .errorMessage("L'email et / ou le mot de passe est incorrect")
                 .build();
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(representation);
     }
@@ -67,7 +67,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class) // les mots de passe ne correspondent pas
     public ResponseEntity<ExceptionRepresentation> handleIllegalArgument(IllegalArgumentException e) {
         ExceptionRepresentation representation = ExceptionRepresentation.builder()
-                .errorMessage(e.getMessage())
+                .errorMessage("Les mots de passe ne correspondent pas")
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(representation);
     }

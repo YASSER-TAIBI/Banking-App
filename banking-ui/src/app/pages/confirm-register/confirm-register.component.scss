@@ -2,31 +2,32 @@
   display: block;
 }
 
-/* ==== CONTAINER ==== */
-.register-container {
+/* ==== CONTAINER GENERAL (même que login) ==== */
+.login-container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 24px;
+  text-align: center;
   background: linear-gradient(160deg, #ffdad4 0%, #fff8f8 100%);
 }
 
-/* ==== CARD ==== */
-.register-card {
+/* ==== CARD (même que login) ==== */
+.login-card {
   width: 100%;
-  max-width: 550px;
-  padding: 32px 50px;
+  max-width: 420px;
+  padding: 32px 28px;
   border-radius: 16px;
   box-shadow: 0 6px 26px rgba(0, 0, 0, 0.09);
 }
 
-/* ==== HEADER ==== */
+/* ==== HEADER (même que login, texte adapté) ==== */
 .header {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 
-  .fa-user-plus {
+  .fa-circle-check {
     font-size: 48px;
     margin-bottom: 6px;
     color: var(--mat-sys-primary);
@@ -46,67 +47,46 @@
   }
 }
 
-/* ==== FORM ==== */
+/* ==== CONTENU ==== */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 12px;
 
-  .full {
-    width: 100%;
-  }
+  .info-text {
+  margin: 0 0 16px 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #c2185b;
+  padding: 15px;
+  background-color: #e8e8e8;
+  border-radius: 6px;
+}
 
-  .register-btn {
+  .login-btn {
     width: 100%;
     height: 44px;
     font-size: 15px;
-    margin-top: 4px;
-  }
-
-  .extra-links {
-    margin-top: 12px;
-    text-align: center;
-
-    a {
-      font-size: 13px;
-      text-decoration: none;
-      cursor: pointer;
-      color: var(--mat-sys-primary);
-    }
+    font-weight: 500;
   }
 }
 
-/* ==== ERROR BLOCK ==== */
-.error-block {
-  margin-top: 12px;
-  padding: 10px 14px;
-  border-radius: 6px;
-  color: rgba(194, 24, 91, 0.9);
-  background: #ffe6ec;
-  border: 1px solid #ff4b8b;
+.info-text {
   font-size: 13px;
+  color: #555;
+  line-height: 1.5;
 }
 
-.error-block ul {
-  margin: 0;
-  padding-left: 18px;
-}
-
-.error-block li {
-  margin-bottom: 4px;
-  list-style-type: disc;
-}
-
-/* ==== RESPONSIVE ==== */
+/* ==== RESPONSIVE (optionnel, même que login) ==== */
 @media (max-width: 768px) {
-  .register-card {
+  .login-card {
     max-width: 380px;
     padding: 28px 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .register-card {
+  .login-card {
     max-width: 100%;
     padding: 22px 16px;
   }
@@ -115,7 +95,7 @@
     font-size: 20px;
   }
 
-  .fa-user-plus {
+  .fa-building-columns {
     font-size: 40px !important;
   }
 }

@@ -1,0 +1,28 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <!-- HEADER -->
+    <div class="header">
+      <i class="fa-solid fa-circle-check"></i>
+      <h1>Inscription réussie</h1>
+      <p class="subtitle">
+        Votre demande de création de compte a été enregistrée.
+      </p>
+    </div>
+
+    <!-- CONTENU -->
+    <div class="form">
+      <p class="info-text">
+        Votre compte sera activé après validation par l’administration.
+        Vous recevrez une notification par email dès que votre compte sera prêt à l’utilisation.
+      </p>
+
+      <button
+        mat-flat-button
+        color="primary"
+        class="login-btn"
+        [routerLink]="'/login'">
+        Aller à la page de connexion
+      </button>
+    </div>
+  </mat-card>
+</div>
