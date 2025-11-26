@@ -35,7 +35,7 @@ userDto: UserDto = {
 };
 errorMessage: Array<string> = [];
 
-  private rootUrl = 'http://localhost:8080'; //
+  private rootUrl = 'http://localhost:8080';
   private http = inject(HttpClient);
   private router = inject(Router);
 

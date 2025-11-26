@@ -4,7 +4,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { login as loginApi } from '../../services/fn/authentication-controller/login';
+import {HttpClient} from '@angular/common/http';
+import { Router } from '@angular/router';
+import { inject } from '@angular/core';
+import { AuthenticationRequest } from '../../services/models';
 
 
 @Component({
@@ -15,7 +20,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   templateUrl: './login.component.html',
   standalone: true,
@@ -23,4 +29,29 @@ import {ReactiveFormsModule} from '@angular/forms';
 })
 export class LoginComponent {
 
+  authRequest: AuthenticationRequest = {};
+  errorMessage: Array<string> = [];
+
+  private rootUrl = 'http://localhost:8080';
+  private http = inject(HttpClient);
+  private router = inject(Router);
+
+  login(){
+    this.errorMessage = [];
+   loginApi(this.http, this.rootUrl, { body: this.authRequest })
+    .subscribe({
+      next: (res) => {
+        localStorage.setItem('token', res.body as string);
+        console.log(res.body);
+      },
+      error: (err) => {
+        // err.error correspond au body JSON de ExceptionRepresentation
+        const backendError = err.error;
+        // message global (par ex. "Object not valid exception has occured")
+        if (backendError?.errorMessage) {
+          this.errorMessage.push(backendError.errorMessage);
+        }
+      }
+    });
+  }
 }
