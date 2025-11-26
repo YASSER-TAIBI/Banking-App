@@ -1,0 +1,28 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <!-- HEADER -->
+    <div class="header">
+      <i class="fa-solid fa-circle-xmark"></i>
+      <h1>Accès refusé</h1>
+      <p class="subtitle">
+        Vous ne disposez pas des autorisations nécessaires.
+      </p>
+    </div>
+
+    <!-- CONTENU -->
+    <div class="form">
+      <p class="info-text">
+        Vous ne disposez pas des autorisations suffisantes pour accéder à cette ressource.
+        Si vous pensez qu’il s’agit d’une erreur, veuillez contacter l’administration.
+      </p>
+
+      <button
+        mat-flat-button
+        color="primary"
+        class="login-btn"
+        [routerLink]="'/user/dashboard'">
+        Retour à la page d'accueil
+      </button>
+    </div>
+  </mat-card>
+</div>

@@ -44,7 +44,13 @@ export class LoginComponent {
         localStorage.setItem('token', res.body.token as string);
         const helper = new JwtHelperService();
         const decodedToken = helper.decodeToken(res.body.token as string);
-        console.log(decodedToken);
+        if (decodedToken.authorities[0].authority === 'ROLE_USER'){
+          this.router.navigate(['user/dashboard']);
+          console.log(decodedToken);
+        }else{
+          this.router.navigate(['admin/dashboard']);
+          console.log(decodedToken);
+        }
       },
       error: (err) => {
         // err.error correspond au body JSON de ExceptionRepresentation

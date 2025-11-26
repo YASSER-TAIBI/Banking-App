@@ -11,6 +11,7 @@ import {RouterLink} from '@angular/router';
     RouterLink
   ],
   templateUrl: './confirm-register.component.html',
+  standalone: true,
   styleUrl: './confirm-register.component.scss'
 })
 export class ConfirmRegisterComponent {
