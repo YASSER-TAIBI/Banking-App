@@ -10,7 +10,7 @@ import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { AuthenticationRequest } from '../../services/models';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-login',
@@ -41,8 +41,10 @@ export class LoginComponent {
    loginApi(this.http, this.rootUrl, { body: this.authRequest })
     .subscribe({
       next: (res) => {
-        localStorage.setItem('token', res.body as string);
-        console.log(res.body);
+        localStorage.setItem('token', res.body.token as string);
+        const helper = new JwtHelperService();
+        const decodedToken = helper.decodeToken(res.body.token as string);
+        console.log(decodedToken);
       },
       error: (err) => {
         // err.error correspond au body JSON de ExceptionRepresentation
