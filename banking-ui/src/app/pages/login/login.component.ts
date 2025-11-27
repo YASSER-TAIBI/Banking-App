@@ -5,12 +5,11 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { login as loginApi } from '../../services/fn/authentication-controller/login';
-import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { AuthenticationRequest } from '../../services/models';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -32,13 +31,12 @@ export class LoginComponent {
   authRequest: AuthenticationRequest = {};
   errorMessage: Array<string> = [];
 
-  private rootUrl = 'http://localhost:8080';
-  private http = inject(HttpClient);
+  private authService = inject(AuthService);
   private router = inject(Router);
 
   login(){
     this.errorMessage = [];
-   loginApi(this.http, this.rootUrl, { body: this.authRequest })
+   this.authService.login(this.authRequest)
     .subscribe({
       next: (res) => {
         localStorage.setItem('token', res.body.token as string);

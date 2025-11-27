@@ -7,8 +7,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserDto} from '../../services/models/user-dto';
 import { register as registerApi } from '../../services/fn/authentication-controller/register';
-import {HttpClient} from '@angular/common/http';
+
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -35,14 +36,13 @@ userDto: UserDto = {
 };
 errorMessage: Array<string> = [];
 
-  private rootUrl = 'http://localhost:8080';
-  private http = inject(HttpClient);
+  private authService = inject(AuthService);
   private router = inject(Router);
 
   register() {
     this.errorMessage = []; // reset
     // Appel à ton endpoint généré
-    registerApi(this.http, this.rootUrl, { body: this.userDto })
+    this.authService.register(this.userDto)
       .subscribe({
         next: async (res) => {
           await this.router.navigate(['/confirm-register']);

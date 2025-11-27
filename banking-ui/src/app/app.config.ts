@@ -4,6 +4,7 @@ import { provideHttpClient, withInterceptorsFromDi, HTTP_INTERCEPTORS } from '@a
 
 import { routes } from './app.routes';
 import { HttpInterceptorService } from './services/http-interceptor/http-interceptor.service';
+import { ApiConfiguration } from './services/api-configuration';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,10 @@ export const appConfig: ApplicationConfig = {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
       multi: true
+    },
+    {
+      provide: ApiConfiguration,
+      useValue: { rootUrl: 'http://localhost:8080' } as ApiConfiguration
     }
   ]
 };
