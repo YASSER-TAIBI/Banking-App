@@ -1,15 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import {RouterLink} from '@angular/router';
-
-interface Transaction {
-  date: string;
-  amount: string;
-  iban: string;
-  type: 'Transfer' | 'Deposit';
-}
+import { inject } from '@angular/core';
+import { TransactionDto } from '../../services/models';
+import { TransactionService } from '../../services/transaction/transaction.service';
+import { HelperService } from '../../services/helper/helper.service';
 
 @Component({
   selector: 'app-transactions',
@@ -23,22 +20,33 @@ interface Transaction {
   standalone: true,
   styleUrl: './transactions.component.scss'
 })
-export class TransactionsComponent {
+export class TransactionsComponent implements OnInit {
+
+  transaction : Array<TransactionDto> = [];
+
+  private transactionService = inject(TransactionService);
+  private helperService = inject(HelperService);
 
   displayedColumns: string[] = ['date', 'amount', 'iban', 'type'];
 
-  transactions: Transaction[] = [
-    { date: '01/01/2023', amount: '1 560€', iban: 'DE12 1234 3456 3456 3455 00', type: 'Transfer' },
-    { date: '01/01/2023', amount: '1 560€', iban: 'DE12 1234 3456 3456 3455 00', type: 'Deposit' },
-    { date: '01/01/2023', amount: '1 560€', iban: 'DE12 1234 3456 3456 3455 00', type: 'Transfer' },
-    { date: '01/01/2023', amount: '1 560€', iban: 'DE12 1234 3456 3456 3455 00', type: 'Transfer' },
-    { date: '01/01/2023', amount: '1 560€', iban: 'DE12 1234 3456 3456 3455 00', type: 'Deposit' },
-    { date: '01/01/2023', amount: '1 560€', iban: 'DE12 1234 3456 3456 3455 00', type: 'Transfer' },
-    { date: '01/01/2023', amount: '1 560€', iban: 'DE12 1234 3456 3456 3455 00', type: 'Deposit' },
-    { date: '01/01/2023', amount: '1 560€', iban: 'DE12 1234 3456 3456 3455 00', type: 'Transfer' },
-    { date: '01/01/2023', amount: '1 560€', iban: 'DE12 1234 3456 3456 3455 00', type: 'Transfer' }
-  ];
+  dataSource = new MatTableDataSource<TransactionDto>();
 
-  dataSource = new MatTableDataSource<Transaction>(this.transactions);
+  ngOnInit(): void {
+    this.findAllByUserIdTransactions();
+  }
 
+  findAllByUserIdTransactions(){
+    this.transactionService.findAllByUserId(this.helperService.userId).subscribe({
+      next: (res) => {
+        this.transaction = res.body ?? [];
+        this.dataSource.data = this.transaction;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  
+ 
 }
