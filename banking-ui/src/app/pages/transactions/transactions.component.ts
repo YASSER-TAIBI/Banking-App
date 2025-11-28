@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {RouterLink} from '@angular/router';
 import { inject } from '@angular/core';
 import { TransactionDto } from '../../services/models';
-import { TransactionService } from '../../services/transaction/transaction.service';
+import { TransactionService } from '../../services/transactions/transaction.service';
 import { HelperService } from '../../services/helper/helper.service';
 
 @Component({
@@ -22,7 +22,7 @@ import { HelperService } from '../../services/helper/helper.service';
 })
 export class TransactionsComponent implements OnInit {
 
-  transaction : Array<TransactionDto> = [];
+  transactions : Array<TransactionDto> = [];
 
   private transactionService = inject(TransactionService);
   private helperService = inject(HelperService);
@@ -38,8 +38,8 @@ export class TransactionsComponent implements OnInit {
   findAllByUserIdTransactions(){
     this.transactionService.findAllByUserId(this.helperService.userId).subscribe({
       next: (res) => {
-        this.transaction = res.body ?? [];
-        this.dataSource.data = this.transaction;
+        this.transactions = res.body ?? [];
+        this.dataSource.data = this.transactions;
       },
       error: (err) => {
         console.log(err);

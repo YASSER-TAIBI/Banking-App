@@ -191,3 +191,28 @@
     margin: 20px 16px;
   }
 }
+
+/* ===== DIALOG RESPONSIVE ===== */
+
+/* Style de base : desktop ~ 500px max */
+::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {
+  max-width: 500px;
+  width: 90vw;        /* prend au max 90% de la largeur de la fenêtre */
+}
+
+/* Tablette (≈ 768px) : largeur un peu plus grande, mais toujours lisible */
+@media (max-width: 1024px) {
+  ::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {
+    max-width: 450px;
+    width: 90vw;
+  }
+}
+
+/* Mobile : occupe presque toute la largeur */
+@media (max-width: 600px) {
+  ::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {
+    max-width: 100%;
+    width: 85vw;      /* très proche du bord mais avec un léger padding */
+    margin: 0 8px;    /* évite de coller complètement aux bords */
+  }
+}

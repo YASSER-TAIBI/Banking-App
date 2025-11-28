@@ -19,34 +19,46 @@
         <!-- Prénom -->
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Prénom</mat-label>
-          <input matInput placeholder="John">
+          <input matInput placeholder="John" [(ngModel)]="contact.firstName" name="firstName" required>
         </mat-form-field>
 
         <!-- Nom -->
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Nom</mat-label>
-          <input matInput placeholder="Doe">
+          <input matInput placeholder="Doe" [(ngModel)]="contact.lastName" name="lastName" required>
         </mat-form-field>
 
         <!-- Email -->
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="john.doe@example.com">
+          <input matInput placeholder="john.doe@example.com" [(ngModel)]="contact.email" name="email" required>
         </mat-form-field>
 
         <!-- IBAN -->
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>IBAN</mat-label>
-          <input matInput placeholder="FR12 1234 3456 3456 3455 00">
+          <input matInput placeholder="FR12 1234 3456 3456 3455 00" [(ngModel)]="contact.iban" name="iban" required>
         </mat-form-field>
 
+        <!-- MESSAGE D'ERREUR -->
+        @if(errorMessage.length) {
+        <div class="error-block">
+          <ul>
+            @for(error of errorMessage; track $index) {
+              <li>{{ error }}</li>
+            }
+          </ul>
+        </div>
+        }
+        
         <!-- Buttons -->
         <div class="actions-row">
           <button
             mat-raised-button
             color="primary"
             type="button"
-            class="cancel-btn">
+            class="cancel-btn" 
+            (click)="onCancel()">
             <mat-icon class="btn-icon">cancel</mat-icon>
             Annuler
           </button>
@@ -55,7 +67,8 @@
             mat-raised-button
             color="primary"
             type="submit"
-            class="save-btn">
+            class="save-btn" 
+            (click)="onSubmit()">
             <mat-icon class="btn-icon">save</mat-icon>
             Enregistrer
           </button>

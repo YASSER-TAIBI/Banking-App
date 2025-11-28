@@ -15,5 +15,4 @@ export class TransactionService {
     return findAllByUserId(this.http, this.apiConfig.rootUrl, { 'user-id': userId });
   }
 
-  constructor() { }
 }

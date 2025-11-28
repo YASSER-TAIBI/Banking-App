@@ -957,22 +957,33 @@
             "format": "int32"
           },
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "email": {
-            "type": "string"
+            "type": "string",
+            "format": "email",
+            "minLength": 1
           },
           "iban": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "userId": {
             "type": "integer",
             "format": "int32"
           }
-        }
+        },
+        "required": [
+          "email",
+          "firstName",
+          "iban",
+          "lastName"
+        ]
       },
       "AuthenticationResponse": {
         "type": "object",
