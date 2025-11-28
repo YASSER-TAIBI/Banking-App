@@ -12,39 +12,60 @@
     <div class="form-card">
       <div class="balance-info">
         <span class="balance-label">Solde de votre compte:</span>
-        <span class="balance-value">21 560 €</span>
+        <span class="balance-value">{{accountBalance}} €</span>
       </div>
 
       <form class="transaction-form">
-        <!-- Contact -->
-        <mat-form-field appearance="outline" class="full-width">
-          <mat-label>Contact</mat-label>
-          <mat-select>
-            <mat-option value="john">John Doe</mat-option>
-            <mat-option value="jane">Jane Doe</mat-option>
-          </mat-select>
-        </mat-form-field>
 
         <!-- Transaction Type -->
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Type de transaction</mat-label>
-          <mat-select>
-            <mat-option value="transfer">Transfer</mat-option>
-            <mat-option value="deposit">Deposit</mat-option>
+          <mat-select [(ngModel)]="transaction.type" name="type">
+            <mat-option selected>Choisir un type de transaction</mat-option>
+            <mat-option value="TRANSFER">Transfer</mat-option>
+            <mat-option value="DEPOSIT">Deposit</mat-option>
           </mat-select>
         </mat-form-field>
+        
+        @if(transaction.type === 'TRANSFER') {
+        <!-- Contact -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Contact</mat-label>
+          <mat-select [(ngModel)]="transaction.destinationIban" name="destinationIban">
+            <mat-option selected>Choisir un contact</mat-option>
+            @for(contact of contacts; track contact.id) {
+              <mat-option [value]="contact.iban">{{ contact.firstName + ' ' + contact.lastName }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        }
 
+        @if(transaction.type) {
         <!-- Amount -->
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Montant</mat-label>
-          <input matInput placeholder="1 560€">
+          <input matInput placeholder="1 560€" [(ngModel)]="transaction.amount" name="amount">
         </mat-form-field>
+        }
 
+        @if(transaction.type === 'TRANSFER') {
         <!-- IBAN -->
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>IBAN</mat-label>
-          <input matInput placeholder="FR12 1234 3456 3456 3455 00">
+          <input matInput placeholder="FR12 1234 3456 3456 3455 00" [(ngModel)]="transaction.destinationIban" name="destinationIban">
         </mat-form-field>
+        }
+
+        <!-- MESSAGE D'ERREUR -->
+        @if(errorMessage.length) {
+        <div class="error-block">
+          <ul>
+            @for(error of errorMessage; track $index) {
+              <li>{{ error }}</li>
+            }
+          </ul>
+        </div>
+        }
 
         <!-- Buttons -->
         <div class="actions-row">
@@ -52,7 +73,8 @@
           mat-raised-button
           color="primary"
           type="button" 
-          class="cancel-link">
+          class="cancel-link"
+          (click)="onCancel()">
           <mat-icon class="btn-icon">cancel</mat-icon>
             Annuler
           </button>
@@ -61,7 +83,8 @@
             mat-raised-button
             color="primary"
             type="submit"
-            class="save-btn">
+            class="save-btn"
+            (click)="onSubmit()">
             <mat-icon class="btn-icon">save</mat-icon>
             Enregistrer
           </button>

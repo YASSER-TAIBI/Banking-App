@@ -82,6 +82,27 @@
   width: 100%;
 }
 
+/* ==== ERROR BLOCK ==== */
+.error-block {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  color: rgba(194, 24, 91, 0.9);
+  background: #ffe6ec;
+  border: 1px solid #ff4b8b;
+  font-size: 13px;
+}
+
+.error-block ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.error-block li {
+  margin-bottom: 4px;
+  list-style-type: disc;
+}
+
 /* Actions */
 .actions-row {
   margin-top: 10px;
