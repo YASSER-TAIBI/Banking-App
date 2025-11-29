@@ -72,7 +72,8 @@
 /* Tableau */
 .users-table {
   width: 100%;
-  min-width: 700px;
+  min-width: 600px;
+  text-align-last: center;
 
   .mat-mdc-header-row {
     background-color: #f0f0f0;
@@ -151,6 +152,10 @@
 .actions-cell {
   display: flex;
   justify-content: center;
+}
+
+.delete-btn {
+    color: #d32f2f; // rouge pour suppression
 }
 
 /* Mobile : texte plus petit */

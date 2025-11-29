@@ -39,6 +39,10 @@ public class UserDto {
     @NotBlank(message = "la confirmation du mot de passe ne doit pas etre vide")
     private String confirmPassword;
 
+    private String iban;
+
+    private boolean active;
+
     public static UserDto fromEntity(User user) {
         if (user == null) {
             return null;
@@ -50,6 +54,8 @@ public class UserDto {
                 .lastName(user.getLastName())
                 .email(user.getEmail())
                 .password(user.getPassword())
+                .active(user.isActive())
+                .iban(user.getAccount() == null ? "" : user.getAccount().getIban())
                 .build();
     }
 

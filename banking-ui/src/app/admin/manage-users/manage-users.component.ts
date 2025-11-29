@@ -1,39 +1,61 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RouterLink } from '@angular/router';
+import { UserService } from '../../services/users/user.service';
+import { UserDto } from '../../services/models';
 
 @Component({
   selector: 'app-manage-users',
   imports: [
+    MatButtonModule,
     MatTableModule,
     MatSlideToggleModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule,
+    MatDialogModule,
+    RouterLink,
   ],
   templateUrl: './manage-users.component.html',
   standalone: true,
   styleUrl: './manage-users.component.scss'
 })
-export class ManageUsersComponent {
+export class ManageUsersComponent implements OnInit {
 
+  users: Array<UserDto> = [];
   displayedColumns: string[] = ['firstName', 'lastName', 'iban', 'state', 'actions'];
-
-    users = [
-    { firstName: 'John', lastName: 'Doe', iban: 'FR12 1234 3456 3456 3455 00', state: 'active',   active: true  },
-    { firstName: 'John', lastName: 'Doe', iban: 'FR12 1234 3456 3456 3455 00', state: 'inactive', active: false },
-    { firstName: 'John', lastName: 'Doe', iban: 'FR12 1234 3456 3456 3455 00', state: 'active',   active: true  },
-    // ... dupliquer pour remplir le tableau
-  ];
-
-  dataSource = new MatTableDataSource(this.users);
-
+  dataSource = new MatTableDataSource<UserDto>();
   showInactiveOnly = false;
+
+  private userService = inject(UserService);
+
+
+  ngOnInit(): void {
+    this.findAllUsers();
+  }
+
+  findAllUsers() {
+    this.userService.findAllUsers().subscribe({
+      next: (res) => {
+        this.users = res.body ?? [];
+        this.dataSource.data = this.users;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
 
   onToggleInactive(checked: boolean) {
     this.showInactiveOnly = checked;
     this.dataSource.data = checked
-      ? this.users.filter(u => u.state === 'inactive')
+      ? this.users.filter(u => u.active === false)
       : this.users;
   }
 }

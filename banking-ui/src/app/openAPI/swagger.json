@@ -909,6 +909,12 @@
           "confirmPassword": {
             "type": "string",
             "minLength": 1
+          },
+          "iban": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
           }
         },
         "required": [
