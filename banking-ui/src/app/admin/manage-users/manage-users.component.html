@@ -4,12 +4,12 @@
       <div class="title-block">
         <h2>Clients de la Banque</h2>
         <p class="subtitle">
-          Gestion des clients actifs et inactifs dans votre application bancaire
+          Gestion des clients (active/désactive) dans votre application bancaire
         </p>
       </div>
 
       <div class="toggle-wrapper">
-        <span class="toggle-label">Afficher les clients inactifs uniquement</span>
+        <span class="toggle-label">Afficher les clients désactivés uniquement</span>
         <mat-slide-toggle
           color="primary"
           [checked]="showInactiveOnly"
@@ -51,7 +51,7 @@
               class="state-badge"
               [class.badge-success]="user.active"
               [class.badge-warning]="!user.active">
-              {{ user.active ? 'Active' : 'Inactive' }}
+              {{ user.active ? 'Active' : 'Désactive' }}
             </span>
           </td>
         </ng-container>
@@ -62,7 +62,7 @@
             Actions
           </th>
           <td mat-cell *matCellDef="let user" class="actions-cell">
-            <mat-checkbox [checked]="user.active"></mat-checkbox>
+            <mat-checkbox [checked]="user.active" [(ngModel)]="user.active" (click)="openActiveInactiveDialog(user)"></mat-checkbox>
             <button mat-icon-button class="action-btn delete-btn" >
               <mat-icon>delete</mat-icon>
             </button>
@@ -80,3 +80,22 @@
     </div>
   </div>
 </div>
+
+<!-- Dialog Active/Inactive -->
+<ng-template #actInactDialog>
+  <h2 mat-dialog-title>Confirmation!</h2>
+  <mat-dialog-content>
+    <div class="dialog-title">
+    Voulez-vous vraiment {{ selectedUser?.active ? 'activer' : 'désactiver' }} cet utilisateur ?
+    </div>
+    <div class="dialog-content">
+    <strong>{{ selectedUser?.firstName }} {{ selectedUser?.lastName }}</strong>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close (click)="cancelChangeState()">Annuler</button>
+    <button mat-button color="warn" (click)="confirmChangeState()" mat-dialog-close>
+      {{ selectedUser?.active ? 'Activer' : 'Désactiver' }}
+    </button>
+  </mat-dialog-actions>
+</ng-template>

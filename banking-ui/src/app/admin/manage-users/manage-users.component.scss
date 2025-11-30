@@ -127,7 +127,6 @@
   text-align: center;
   font-size: 12px;
   font-weight: 600;
-  text-transform: lowercase;
   border: 1px solid transparent;
 }
 
@@ -175,5 +174,44 @@
 @media (max-width: 992px) {
   .manage-users-container {
     margin: 20px 16px;
+  }
+}
+
+/* ===== DIALOG RESPONSIVE ===== */
+
+mat-dialog-content {
+  .dialog-title{
+  margin-bottom: 10px;
+  font-size: 16px;
+  }
+  .dialog-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ba005c;
+  font-size: 16px;
+  }
+}
+
+/* Style de base : desktop ~ 500px max */
+::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {
+  max-width: 500px;
+  width: 90vw;        /* prend au max 90% de la largeur de la fenêtre */
+}
+
+/* Tablette (≈ 768px) : largeur un peu plus grande, mais toujours lisible */
+@media (max-width: 1024px) {
+  ::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {
+    max-width: 450px;
+    width: 90vw;
+  }
+}
+
+/* Mobile : occupe presque toute la largeur */
+@media (max-width: 600px) {
+  ::ng-deep .cdk-overlay-pane.mat-mdc-dialog-panel {
+    max-width: 100%;
+    width: 85vw;      /* très proche du bord mais avec un léger padding */
+    margin: 0 8px;    /* évite de coller complètement aux bords */
   }
 }

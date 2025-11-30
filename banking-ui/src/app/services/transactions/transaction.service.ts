@@ -1,9 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration } from '../api-configuration';
-import { findAllByUserId } from '../fn/transaction-controller/find-all-by-user-id';
+import { findAllByUserId, save1 } from '../functions';
 import { TransactionDto } from '../models';
-import { save1 } from '../functions';
 
 @Injectable({
   providedIn: 'root'

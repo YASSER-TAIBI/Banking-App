@@ -1,8 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration } from '../api-configuration';
-import { login } from '../fn/authentication-controller/login';
-import { register } from '../fn/authentication-controller/register';
+import { login, register } from '../functions';
 import { AuthenticationRequest } from '../models/authentication-request';
 import { UserDto } from '../models/user-dto';
 

@@ -6,6 +6,7 @@ import com.yazzer.banking.dto.AuthenticationRequest;
 import com.yazzer.banking.dto.AuthenticationResponse;
 import com.yazzer.banking.dto.UserDto;
 import com.yazzer.banking.exceptions.OperationNonPermittedException;
+import com.yazzer.banking.models.Account;
 import com.yazzer.banking.models.Role;
 import com.yazzer.banking.models.User;
 import com.yazzer.banking.repositories.AccountRepository;
@@ -50,6 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public List<UserDto> findAll() {
         return repository.findAll()
                 .stream()
@@ -94,14 +96,19 @@ public class UserServiceImpl implements UserService {
             AccountDto account = AccountDto.builder()
                     .user(UserDto.fromEntity(user))
                     .build();
-            accountService.save(account);
+            var savedAccount =accountService.save(account);
+            user.setAccount(
+                Account.builder()
+                    .id(savedAccount)
+                    .build()
+            );
         }
 
         // Réactive le user
         user.setActive(true);
         repository.save(user);
-
         return user.getId();
+
     }
 
     @Override
