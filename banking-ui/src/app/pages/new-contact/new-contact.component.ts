@@ -43,7 +43,7 @@ export class NewContactComponent implements OnInit {
    if(contactId){
     this.contactService.findById(contactId).subscribe({
       next: (res) => {
-        this.contact = res.body;
+        this.contact = res;
       },
       error: (err) => {
         console.log(err);

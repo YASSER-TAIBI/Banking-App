@@ -49,7 +49,7 @@ export class ManageUsersComponent implements OnInit {
   findAllUsers() {
     this.userService.findAllUsers().subscribe({
       next: (res) => {
-        this.users = res.body ?? [];
+        this.users = res;
         this.dataSource.data = this.users;
       },
       error: (err) => {

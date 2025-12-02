@@ -8,6 +8,8 @@ export interface UserDto {
   firstName: string;
   iban?: string;
   id?: number;
+  lastLogin?: string;
   lastName: string;
   password: string;
+  previousLogin?: string;
 }

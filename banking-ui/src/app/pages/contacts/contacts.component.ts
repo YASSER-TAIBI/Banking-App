@@ -47,7 +47,7 @@ export class ContactsComponent implements OnInit {
   findAllByUserIdContacts() {
     this.contactService.findAllByUserId(this.helperService.userId).subscribe({
       next: (res) => {
-        this.contacts = res.body ?? [];
+        this.contacts = res;
         this.dataSource.data = this.contacts;
       },
       error: (err) => {

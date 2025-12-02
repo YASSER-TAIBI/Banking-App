@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/statistics")
@@ -26,6 +26,13 @@ public class StatisticsController {
             @RequestParam("end-date") @DateTimeFormat (pattern = "yyyy-MM-dd") LocalDate endDate
     ){
         return ResponseEntity.ok(statisticsService.findSumTransactionByDate(startDate, endDate, userId));
+    }
+
+    @GetMapping("/sum-transaction/{user-id}")
+    public ResponseEntity<List<TransactionSumDetails>> findAllSumTransactionByDate(
+            @PathVariable("user-id") Integer userId
+    ){
+        return ResponseEntity.ok(statisticsService.findAllSumTransactionByDate(userId));
     }
 
     @GetMapping("/account-balance/{user-id}")
@@ -47,5 +54,12 @@ public class StatisticsController {
             @PathVariable("user-id") Integer userId
     ){
         return ResponseEntity.ok(statisticsService.highestDeposit(userId));
+    }
+
+    @GetMapping("/previous-login/{user-id}")
+    public ResponseEntity<LocalDateTime> previousLogin(
+            @PathVariable("user-id") Integer userId
+    ){
+        return ResponseEntity.ok(statisticsService.PreviousDateLogin(userId));
     }
 }

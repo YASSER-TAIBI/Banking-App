@@ -3,6 +3,7 @@ package com.yazzer.banking.services.impl;
 import com.yazzer.banking.dto.TransactionSumDetails;
 import com.yazzer.banking.models.TransactionType;
 import com.yazzer.banking.repositories.TransactionRepository;
+import com.yazzer.banking.repositories.UserRepository;
 import com.yazzer.banking.services.StatisticsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,13 +13,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class StatisticsServiceImpl implements StatisticsService {
 
     private final TransactionRepository transactionRepository;
+    private final UserRepository userRepository;
 
     @Override
     public List<TransactionSumDetails> findSumTransactionByDate(LocalDate startDate, LocalDate endDate, Integer userId) {
@@ -41,4 +42,16 @@ public class StatisticsServiceImpl implements StatisticsService {
     public BigDecimal highestDeposit(Integer userId) {
         return transactionRepository.findHighestAmountByTransactionType(userId, TransactionType.DEPOSIT);
     }
+
+    @Override
+    public LocalDateTime PreviousDateLogin(Integer userId) {
+        return userRepository.findPreviousLogin(userId);
+    }
+
+    @Override
+    public List<TransactionSumDetails> findAllSumTransactionByDate(Integer userId) {
+        return transactionRepository.findAllSumTransactionsByDate(userId);
+    }
+
+    
 }

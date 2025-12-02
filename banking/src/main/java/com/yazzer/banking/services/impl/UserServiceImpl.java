@@ -23,6 +23,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -147,6 +148,12 @@ public class UserServiceImpl implements UserService {
     public AuthenticationResponse login(AuthenticationRequest request) {
         authManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         final User user = repository.findByEmail(request.getEmail()).get();
+
+        // mettre à jour la dernière connexion
+        user.setPreviousLogin(user.getLastLogin());
+        user.setLastLogin(LocalDateTime.now());
+        repository.save(user);
+        
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", user.getId());
         claims.put("fullName", user.getFirstName() + " " + user.getLastName());

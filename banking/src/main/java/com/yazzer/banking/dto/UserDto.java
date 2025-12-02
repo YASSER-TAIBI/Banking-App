@@ -1,5 +1,7 @@
 package com.yazzer.banking.dto;
 
+import java.time.LocalDateTime;
+
 import com.yazzer.banking.models.User;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -43,6 +45,10 @@ public class UserDto {
 
     private boolean active;
 
+    private LocalDateTime lastLogin;
+
+    private LocalDateTime previousLogin;
+
     public static UserDto fromEntity(User user) {
         if (user == null) {
             return null;
@@ -56,6 +62,8 @@ public class UserDto {
                 .password(user.getPassword())
                 .active(user.isActive())
                 .iban(user.getAccount() == null ? "" : user.getAccount().getIban())
+                .lastLogin(user.getLastLogin())
+                .previousLogin(user.getPreviousLogin())
                 .build();
     }
 

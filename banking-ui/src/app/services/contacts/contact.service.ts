@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { ApiConfiguration } from '../api-configuration';
 import { delete2, findAllByUserId1, findById2, save2 } from '../functions';
 import { ContactDto } from '../models';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,18 +14,22 @@ export class ContactService {
   private apiConfig = inject(ApiConfiguration);
 
   findAllByUserId(userId: number) {
-    return findAllByUserId1(this.http, this.apiConfig.rootUrl, { 'user-id': userId });
+    return findAllByUserId1(this.http, this.apiConfig.rootUrl, { 'user-id': userId })
+      .pipe(map(res => res.body ?? []));
   }
 
   save(contact: ContactDto) {
-    return save2(this.http, this.apiConfig.rootUrl, { body: contact });
+    return save2(this.http, this.apiConfig.rootUrl, { body: contact })
+      .pipe(map(res => res.body ?? null));
   }
 
   findById(contactId: number) {
-    return findById2(this.http, this.apiConfig.rootUrl, { 'contact-id': contactId });
+    return findById2(this.http, this.apiConfig.rootUrl, { 'contact-id': contactId })
+      .pipe(map(res => res.body ?? null));
   }
 
   delete(contactId: number) {
-    return delete2(this.http, this.apiConfig.rootUrl, { 'contact-id': contactId });
+    return delete2(this.http, this.apiConfig.rootUrl, { 'contact-id': contactId })
+      .pipe(map(res => res.body ?? null));
   }
 }

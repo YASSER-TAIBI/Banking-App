@@ -38,7 +38,7 @@ export class TransactionsComponent implements OnInit {
   findAllByUserIdTransactions(){
     this.transactionService.findAllByUserId(this.helperService.userId).subscribe({
       next: (res) => {
-        this.transactions = res.body ?? [];
+        this.transactions = res;
         this.dataSource.data = this.transactions;
       },
       error: (err) => {

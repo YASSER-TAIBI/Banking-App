@@ -47,7 +47,7 @@ export class NewTransactionComponent implements OnInit {
   findAllByUserIdContacts() {
     this.contactService.findAllByUserId(this.helperService.userId).subscribe({
       next: (res) => {
-        this.contacts = res.body ?? [];
+        this.contacts = res;
       },
       error: (err) => {
         console.log(err);
@@ -58,7 +58,7 @@ export class NewTransactionComponent implements OnInit {
   getAccountBalanceUser() {
     this.statisticService.getAccountBalanceUser(this.helperService.userId).subscribe({
       next: (res) => {
-        this.accountBalance = res.body ?? 0;
+        this.accountBalance = res;
       },
       error: (err) => {
         console.log(err);

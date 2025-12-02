@@ -10,7 +10,7 @@
       </div>
 
       <div class="solde-value">
-        <span class="amount">10 012,54 €</span>
+        <span class="amount">{{accountBalance}} €</span>
         <mat-icon fontIcon="visibility"></mat-icon>
       </div>
     </div>
@@ -20,7 +20,7 @@
       <h3>DERNIÈRE CONNEXION</h3>
       </div>
       <div class="connection-date">
-        <h3>16/11/2025 15:10</h3>
+        <h3>{{ previousLogin | date:'dd/MM/yyyy HH:mm' }}</h3>
       </div>
     </div>
   </mat-card>
@@ -34,7 +34,7 @@
       <div class="info-content">
         <div>
           <h3>Transaction la plus élevée</h3>
-          <p>1 100,00 €</p>
+          <p>{{highestTransaction}} €</p>
         </div>
       </div>
     </mat-card>
@@ -44,7 +44,7 @@
       <div class="info-content">
         <div>
           <h3>Dépôt le plus élevé</h3>
-          <p>3 056,40 €</p>
+          <p>{{highestDeposit}} €</p>
         </div>
       </div>
     </mat-card>
@@ -61,6 +61,7 @@
           matInput
           [matDatepicker]="startPicker"
           [(ngModel)]="startDate">
+        <mat-hint>JJ/MM/AAAA</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="startPicker">
           <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
         </mat-datepicker-toggle>
@@ -73,15 +74,25 @@
           matInput
           [matDatepicker]="endPicker"
           [(ngModel)]="endDate">
+        <mat-hint>JJ/MM/AAAA</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="endPicker">
           <mat-icon matDatepickerToggleIcon>calendar_today</mat-icon>
         </mat-datepicker-toggle>
         <mat-datepicker #endPicker></mat-datepicker>
       </mat-form-field>
+
+      <button mat-mini-fab aria-label="Rechercher" (click)="getChartTransactionFilteredByDate()">
+          <mat-icon>search</mat-icon>
+      </button>
     </div>
 
     <div class="graphs-placeholder">
-      <!-- Ici tu ajouteras plus tard tes 2 graphes (barres + courbe) -->
+      <canvas class="graphs" baseChart
+      [type]="chartType"
+      [data]="chartData"
+      [options]="chartOptions"
+      [legend]="true">
+    </canvas>
     </div>
 
   </div>
